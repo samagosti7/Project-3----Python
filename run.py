@@ -63,6 +63,6 @@ while turns > 0:
     if count_hit_ships(GUESS_BOARD) == 4:
         print("That's the last of them sir, we've done it! All battleships sunk, we've won!")
         break
-    print(f"You have {turns} turns left. Your updated sea map is now below.")
+    print(f"You have {turns} turns left. Your updated sea map is below.")
     if turns == 0:
         print("We're out of time. We ran out of turns, so the enemy has escaped with their remaining vessels.")
