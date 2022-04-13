@@ -29,8 +29,8 @@ def create_ships(board):
         board[ship_row][ship_column] = "X"
 
 def get_ship_location():
-    row = input("Enter ship row between 1 and 7:  ")
-    column = input("Enter ship column between A-G:  ").upper()
+    row = input("Enter ship row between 1 and 7:  \n")
+    column = input("Enter ship column between A-G:  \n").upper()
     return int(row)-1, letters_to_numbers[column]
 
 def count_hit_ships(board):
@@ -43,9 +43,9 @@ def count_hit_ships(board):
 
 
 create_ships(COMPUTER_BOARD)
-turns = 17
+turns = 18
 print_board(COMPUTER_BOARD)
-print("Ahoy admiral, prepare for war! We have 18 shots for the heavy artillery and reconnaissance tells us there are 4 enemy ships lurking in the area. It's up to you to find them!")
+print("Ahoy admiral, prepare for war! We have 18 shots for the heavy artillery and reconnaissance tells us there are 4 enemy ships lurking in the area. A blank map of the sea is below, and the gunners are standing by--so it's up to you to find the enemy!")
 while turns > 0:
     print_board(GUESS_BOARD)
     row, column = get_ship_location()
