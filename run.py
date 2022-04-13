@@ -1,7 +1,8 @@
-# Initial Comment
-# X for placed battleship and hit battleship
-# ' ' for available
-# "-" for miss
+"""Initial Comment
+X for placed battleship and hit battleship
+' ' for available
+"-" for miss """
+
 from random import randint
 
 print("Hello")
