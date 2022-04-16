@@ -5,7 +5,6 @@ X for placed battleship and hit battleship
 
 from random import randint
 
-print("Hello")
 COMPUTER_BOARD = [[" "]*7 for x in range(7)]
 GUESS_BOARD = [[" "]*7 for x in range(7)]
 
@@ -110,10 +109,11 @@ def count_hit_ships(board):
 
 create_ships(COMPUTER_BOARD)
 turns = 24
+computer_count = 0
 print("Ahoy admiral, prepare for war! It's time for us to hide our own ships. Pick 4 locations by picking a row and column, and make sure they aren't too easily found. Placing two ships on the same tile is impossible--if you assign two vessels the same location, one will defer to a random location in the ocean.")
 computer_guess_list = hide_ships()
 print(computer_guess_list)
-print("We have 24 shots for the heavy artillery and reconnaissance tells us there are 4 enemy ships lurking in the area. A blank map of the sea is below, and the gunners are standing by--so it's up to you to find the enemy!")
+print("We have 24 shots for the heavy artillery and reconnaissance tells us there are 4 enemy ships lurking in the area. A blank map of the sea is below, and the gunners are standing by--it's up to you to find the enemy. Good luck.")
 print_board(COMPUTER_BOARD)
 
 while turns > 0:
@@ -124,19 +124,31 @@ while turns > 0:
     elif COMPUTER_BOARD[row][column] == "X":
         print("A hit! Well shot, sir, ship sunk.")
         GUESS_BOARD[row][column] = "X"
-        computer_guess = randint(0, 0), randint(0,0)
-        print(computer_guess)
+        computer_guess = randint(0, 6), randint(0,6)
+        if computer_guess in computer_guess_list:
+            computer_count += 1
+            print(f"Some bad news--the enemy sunk one of ours. They've hit {computer_count} of our ships total so far.")
+        else:
+            print("Some good news--the enemy has missed! Now let's get back on the offensive.")
         turns -= 1
     else:
         print("No luck sir, shot missed.")
         GUESS_BOARD[row][column] = "-"
-        computer_guess = randint(0, 0), randint(0,0)
-        print(computer_guess)
+        computer_guess = randint(0, 6), randint(0,6)
+        if computer_guess in computer_guess_list:
+            computer_count += 1
+            print(f"Some bad news--the enemy sunk one of ours. They've hit {computer_count} of our ships total so far.")
+        else:
+            print("Some good news--the enemy has missed! Now let's get back on the offensive.")
         turns -= 1
     
     if count_hit_ships(GUESS_BOARD) == 4:
-        print("That's the last of them sir, we've done it! All battleships sunk, we've won!")
+        print("Alas, that's the last of them sir, we've done it! All enemy battleships sunk, we've won!")
+        break
+    if computer_count == 4:
+        print("We are finished--thats the last of our navy sinking to the depths. It's been an honor, sir, but the enemy has won.")
         break
     print(f"We have {turns} shots left. Your updated sea map is below.")
     if turns == 0:
-        print("We're out of time. We ran out of turns, so the enemy has escaped with their remaining vessels.")
+        print("That's it, we're out of time. We ran out of turns, so both we and the enemy will live to sail another day.")
+        break
