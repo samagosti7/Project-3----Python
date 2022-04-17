@@ -13,20 +13,18 @@ A live version of the game can be found [here](livelink).
 
 ### Project Goals
 
-The main goal of this game is to create a fun entertaining game that is interactive to the user and to display the basic use of the Python language. The user will play against the computer making the game more engaging.
+My main objective was to use python to create a functional battleship game, slightly immersive so that the user stays entertained and robust enough to handle user error.  The user plays against the computer, who guesses ship locations at random.  
 
 ### User Goals:
 
 First Time Visitor Goals
-- As a first-time visitor, I want to be engaged with the concept of the game.
-- As a first-time visitor, I want to be able to easily understand the rules of the game.
-- As a first-time visitor, I want to play the game to win.
-
+- First time visitors should be able to easily learn the rules of the game.
+- First time visitors should be able to interact with the UI easily enough that they can see a game through to the end without complication.  
+- First time visitors should look to play the game to beat the computer. 
 Returning Visitor Goals
-- As a Returning Visitor, I want to beat the computer.
-
-Frequent User Goals
-- As a Frequent User, I want to check to see if there are more features added.
+- Returning visitors should look to beat the computer. 
+- Returning visitors should check in to see if new features have been added.  
+- Returning visitors could return to the game as an introduction to others, showing where a functional battleship game can be found online.  
 
 ### User Expectations:
 
