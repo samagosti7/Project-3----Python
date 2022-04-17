@@ -111,7 +111,7 @@ def hide_ships():
 
 
 def create_ships(board):
-    for ship in range(4):
+    for x in range(4):
         ship_row, ship_column = randint(0, 6), randint(0, 6)
         while board[ship_row][ship_column] == "X":
             ship_row, ship_column = randint(0, 6), randint(0, 6)
@@ -120,7 +120,13 @@ def create_ships(board):
 
 def get_ship_location():
     row = input("Enter ship row guess between 1 and 7:  \n")
+    while row not in ["1", "2", "3", "4", "5", "6", "7"]:
+        print("Invalid input")
+        row = input("Enter ship row guess between 1 and 7:  \n")
     column = input("Enter ship column guess between A-G:  \n").upper()
+    while column not in ["A", "B", "C", "D", "E", "F", "G"]:
+        print("Invalid input")
+        column = input("Enter ship column guess between A-G:  \n").upper()
     return int(row)-1, letters_to_numbers[column]
 
 
@@ -144,7 +150,11 @@ print(
     )
 computer_guess_list = hide_ships()
 print(computer_guess_list)
-print("We have 24 shots for the heavy artillery and reconnaissance tells us there are 4 enemy ships lurking in the area. A blank map of the sea is below, and the gunners are standing by--it's up to you to find the enemy. Good luck.")
+print(
+    "We have 24 shots for the heavy artillery and reconnaissance tells us"
+    " there are 4 enemy ships lurking in the area. A blank map of the sea is"
+    " below, and the gunners are standing by--it's up to you to find the enemy"
+    ". Good luck.")
 print_board(COMPUTER_BOARD)
 
 while TURNS > 0:
@@ -158,7 +168,9 @@ while TURNS > 0:
         computer_guess = randint(0, 6), randint(0, 6)
         if computer_guess in computer_guess_list:
             COMPUTER_COUNT += 1
-            print(f"Some bad news--the enemy sunk one of ours. They've hit {COMPUTER_COUNT} of our ships total so far.")
+            print(
+                "Some bad news--the enemy sunk one of ours. They've hit"
+                "f{COMPUTER_COUNT} of our ships total so far.")
         else:
             print("Some good news--the enemy has missed!")
         TURNS -= 1
@@ -168,18 +180,26 @@ while TURNS > 0:
         computer_guess = randint(0, 6), randint(0, 6)
         if computer_guess in computer_guess_list:
             COMPUTER_COUNT += 1
-            print(f"Some bad news--the enemy sunk one of ours. They've hit {COMPUTER_COUNT} of our ships total so far.")
+            print(
+                "Some bad news--the enemy sunk one of ours. They've hit"
+                "f{COMPUTER_COUNT} of our ships total so far.")
         else:
             print("Some good news--the enemy has missed!")
         TURNS -= 1
 
     if count_hit_ships(GUESS_BOARD) == 4:
-        print("Alas, that's the last of them sir, we've done it! All enemy battleships sunk, we've won!")
+        print(
+            "Alas, that's the last of them sir, we've done it! All enemy"
+            "battleships sunk, we've won!")
         break
     if COMPUTER_COUNT == 4:
-        print("We are finished--thats the last of our navy sinking to the depths. It's been an honor, sir, but the enemy has won.")
+        print(
+            "We are finished--thats the last of our navy sinking to the"
+            "depths. It's been an honor, sir, but the enemy has won.")
         break
     print(f"We have {TURNS} shots left. Your updated sea map is below.")
     if TURNS == 0:
-        print("That's it, we're out of time. We ran out of turns, so both we and the enemy will live to sail another day.")
+        print(
+            "That's it, we're out of time. We ran out of turns, so both we"
+            "and the enemy will live to sail another day.")
         break
