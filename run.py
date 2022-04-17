@@ -160,10 +160,15 @@ def count_hit_ships(board):
                 player_count += 1
     return player_count
 
+# Creation of randomized computer ships
+
 
 create_ships(COMPUTER_BOARD)
+
+# Requisite global assignment variables to be used the game loop
 TURNS = 24
 COMPUTER_COUNT = 0
+# Intro message
 print(
     "Ahoy admiral, prepare for war! Welcome to the great game of battleship. "
     "You have 4 ships in your navy to place on the board as you see fit. Each"
@@ -177,15 +182,17 @@ print(
     " vessels the same location, one will then defer to a random location in"
     " the ocean."
     )
+# Player hiding ships
+
+
 computer_guess_list = hide_ships()
 print(
     "We have 24 shots for the heavy artillery and reconnaissance tells us"
     " there are 4 enemy ships lurking in  the area. A blank map of the sea is"
     " below, and the gunners are standing by--it's up to you to find the   "
     "enemy. Good luck.")
-print_board(COMPUTER_BOARD)
 
-# Skeleton of loop credited to https://www.youtube.com/watch?v=tF1WRCrd_HQ
+# Game loop. Skeleton credited to https://www.youtube.com/watch?v=tF1WRCrd_HQ
 while TURNS > 0:
     print_board(GUESS_BOARD)
     row, column = get_ship_location()
