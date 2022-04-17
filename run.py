@@ -1,27 +1,42 @@
-"""Initial Comment
+"""
+General key for board notation
 X for placed battleship and hit battleship
-' ' for available
-"-" for miss """
+' ' for unguessed tile on board
+"-" for miss
+"""
 
+# Import statement to generate random integers
 from random import randint
+
+# Generation of two blank boards as baseline, one to hold the computer ships,
+# and one to display to the user.
 
 COMPUTER_BOARD = [[" "]*7 for x in range(7)]
 GUESS_BOARD = [[" "]*7 for x in range(7)]
 
 
+# Dictionary corresponding letters to numbers for conversion, for later use
 letters_to_numbers = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5, "G": 6}
 
 
 def print_board(board):
+    """ Function which prints out whichever board is entered to it as a parameter,
+    with appropriate column and row labels."""
     print("  A B C D E F G")
     print("  -------------")
     row_number = 1
     for row in board:
+        # This code was taken from a youtube tutorial on making a
+        # battleship game--below specifically is for lining up the row labels
+        # with the board. Credit to https://www.youtube.com/watch?v=tF1WRCrd_HQ
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
 
 
 def hide_ships():
+    """Gathers user input for desired hiding spots for user ships and checks
+    them against acceptable input validity. Also makes sure no two locations
+    given by the user are the same"""
     # Ship One
     ship_positions = []
     print("Time to position our first ship.")
@@ -104,14 +119,16 @@ def hide_ships():
     while (
         ship_positions[3] == ship_positions[0] or
         ship_positions[3] == ship_positions[1] or
-        ship_positions[3] == ship_positions[3]
+        ship_positions[3] == ship_positions[2]
     ):
         ship_positions[3] = randint(0, 6), randint(0, 6)
     return ship_positions
 
 
+# Function structure credit https://www.youtube.com/watch?v=tF1WRCrd_HQ
 def create_ships(board):
-    for x in range(4):
+    """Randomly generates the computer locations for computer battleships"""
+    for numbers in range(4):
         ship_row, ship_column = randint(0, 6), randint(0, 6)
         while board[ship_row][ship_column] == "X":
             ship_row, ship_column = randint(0, 6), randint(0, 6)
@@ -119,6 +136,8 @@ def create_ships(board):
 
 
 def get_ship_location():
+    """Obtains user guess for ship locations, and checks to ensure input is
+    valid."""
     row = input("Enter ship row guess between 1 and 7:  \n")
     while row not in ["1", "2", "3", "4", "5", "6", "7"]:
         print("Invalid input")
@@ -127,36 +146,46 @@ def get_ship_location():
     while column not in ["A", "B", "C", "D", "E", "F", "G"]:
         print("Invalid input")
         column = input("Enter ship column guess between A-G:  \n").upper()
+    # Return value here from https://www.youtube.com/watch?v=tF1WRCrd_HQ
     return int(row)-1, letters_to_numbers[column]
 
 
+# Function structure credit https://www.youtube.com/watch?v=tF1WRCrd_HQ
 def count_hit_ships(board):
-    count = 0
+    """Counts number of X's total on the input parameter board"""
+    player_count = 0
     for row in board:
         for column in row:
             if column == "X":
-                count += 1
-    return count
+                player_count += 1
+    return player_count
 
 
 create_ships(COMPUTER_BOARD)
 TURNS = 24
 COMPUTER_COUNT = 0
 print(
-    "Ahoy admiral, prepare for war! It's time for us to hide our ships."
-    " Pick 4 locations by picking a row and column. Note that placing two"
-    " ships on the same tile is impossible--if you assign two vessels the same"
-    " location, one will then defer to a random location in the ocean."
+    "Ahoy admiral, prepare for war! Welcome to the great game of battleship. "
+    "You have 4 ships in your navy to place on the board as you see fit. Each"
+    " ship is exactly 1x1 sized, meaning it takes up only a single tile on"
+    " the board. The board is set up in rows 1-7, and columns A-G. Once placed"
+    ", you and the enemy computer will take turns guessing at the location the"
+    " enemy ships. First to sink all 4 enemy ships wins. If the 24 turn limit"
+    " is reached with no winner, the game will end in a draw. It's time for us"
+    " to hide our ships-- Pick 4 locations by picking a row and column. Note"
+    " that placing two ships on the same tile is impossible--if you assign two"
+    " vessels the same location, one will then defer to a random location in"
+    " the ocean."
     )
 computer_guess_list = hide_ships()
-print(computer_guess_list)
 print(
     "We have 24 shots for the heavy artillery and reconnaissance tells us"
-    " there are 4 enemy ships lurking in the area. A blank map of the sea is"
-    " below, and the gunners are standing by--it's up to you to find the enemy"
-    ". Good luck.")
+    " there are 4 enemy ships lurking in  the area. A blank map of the sea is"
+    " below, and the gunners are standing by--it's up to you to find the   "
+    "enemy. Good luck.")
 print_board(COMPUTER_BOARD)
 
+# Skeleton of loop credited to https://www.youtube.com/watch?v=tF1WRCrd_HQ
 while TURNS > 0:
     print_board(GUESS_BOARD)
     row, column = get_ship_location()
@@ -190,16 +219,16 @@ while TURNS > 0:
     if count_hit_ships(GUESS_BOARD) == 4:
         print(
             "Alas, that's the last of them sir, we've done it! All enemy"
-            "battleships sunk, we've won!")
+            " battleships sunk, we've won!")
         break
     if COMPUTER_COUNT == 4:
         print(
             "We are finished--thats the last of our navy sinking to the"
-            "depths. It's been an honor, sir, but the enemy has won.")
+            " depths. It's been an honor, sir, but the enemy has won.")
         break
     print(f"We have {TURNS} shots left. Your updated sea map is below.")
     if TURNS == 0:
         print(
             "That's it, we're out of time. We ran out of turns, so both we"
-            "and the enemy will live to sail another day--it's a draw.")
+            " and the enemy will live to sail another day--it's a draw.")
         break
