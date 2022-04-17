@@ -5,7 +5,7 @@
 For my Python essentials project, I chose to take another crack at a battleship game, after having unsuccessfully pursued that avenue for the JavaScript project.  Using python, I aimed to deploy code to a heroku app, on which a simple version of battleship can be played against the computer.  
 The user attempts to beat the computer by finding all enemy battleships first. Each battleship is in a 1x1 spot on the board.
 
-A live version of the game can be found [here](livelink).
+A live version of the game can be found [here](https://github.com/samagosti7/Project-3----Python).
 
 ### Project Goals
 
