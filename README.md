@@ -18,78 +18,80 @@ My main objective was to use python to create a functional battleship game, slig
 ### User Goals:
 
 First Time Visitor Goals
-- First time visitors should be able to easily learn the rules of the game.
+- First time visitors can easily learn the rules of the game.
 - First time visitors should be able to interact with the UI easily enough that they can see a game through to the end without complication.  
-- First time visitors should look to play the game to beat the computer. 
+- First time visitors would look to play the game to beat the computer. 
 Returning Visitor Goals
-- Returning visitors should look to beat the computer. 
+- Returning visitors will look to beat the computer. 
 - Returning visitors should check in to see if new features have been added.  
 - Returning visitors could return to the game as an introduction to others, showing where a functional battleship game can be found online.  
 
 ### User Expectations:
 
-The game should be engaging and display a winner and loser.
-
-- The instructions are clear and simple to follow.
-- The game is fun to play
+- The game should trigger automatically
+- The rules of the game should be clearly explained
+- The instructions the user receives should be easy to understand and follow
+- The game should clearly display how much time remains, and declare a winner and loser if one side wins
 
 ## Structure
 
 Below is a diagram showing the logic and possibilities for this game.
 
-![project diagram](documentation_assets/images/battleships_diagram.png)
+![project diagram](diagram)
 
 ## How to play
 
-Battleships is a simple board game that requires 2 players to play. In this case, you will be playing against the CPU.
-The user will enter a value between 0-7 to set the guess the location of the ships on the board.
-The user gets 8 guesses, if the user has used all guesses on the first ship, the game will end.
-The user will see where their ships are marked, indicated an S.
-Missed guesses on the opponent's board will be marked with an O, hits are indicated by an X.
-Once the user has made their guess, the CPU will automatically respond with a guess.
-The user and computer will take turns guessing.
-The game is finished when either the user or computer has guessed all the opponent's ships, or when either player has guessed incorrectly 8 times in a row.
+- Battleships is a simple board game that requires 2 players to play. In this case, the user plays against the CPU, who is at times referred to as "the enemy"
+- The user first hides all 4 of their own ships, assigning them locations through choosing a row and column. 
+- If the user tries to hide two ships on the same tile, one of the two is assigned a random tile instead.  
+- The user then is prompted to start the guessing and is shown an empty board.  
+- The user guesses a specific row and column in which the enemy ship might be.  
+- After the user guess, the computer takes a randomly generated guess against the locations in which the user hid their boats at the beginning.  
+- If either user or computer hits, a counter for their score is increased by 1. The user is then prompted to guess again unless the game has ended.   
+- If either player gets a score count of 4, they have won, and the game ends, with an announcement declaring the winner.  
+- Otherwise, there are 24 turns total in the game, after which point the game ends in a draw.  
 
 ## Features
 
 ### Existing Features
-- Random ship generation
- - The user and computer ships are generated randomly onto the board.
- - The user's ship location will be printed to the user's board, this is marked with an "S"
- - Multiple battleships - each opponent has 3 ships to guess
-
-![game_start_terminal](documentation_assets/images/game_start_terminal.png)
-
-- Play against the computer, the computer will automatically return with a guess after the users guess
-- Accepts user input
+- Random computer ship generation
+ - The computer ships are generated randomly onto the board, using randint. 
+ - On a board the user cannot see, these locations are marked with an X.  User guesses are checked against this hidden board.  
+- Accepts user input for ship locations, and guess locations
+- Each player has 4 ships to hide, thus 4 enemy ships to attempt to sink.  
+- The updated guess board is shown after each user guess, assuming the game hasn't ended
+- Win, loss, and draw messages are in place, paired to each of their corresponding situations should either side win, or should time expire.  
 
 
 ![game_turn1](documentation_assets/images/game_turn1.png)
 
 - Input validation
-    - You can only enter numbers/integers
-    ![string_values_entered](documentation_assets/images/input_validation_string.png)
-    - Error message when user enters a value that is not in range
-    ![guess_coordinates_out_of_range](documentation_assets/images/guess_value_out_of_range.png)
-    - Error message when user enters the same coordinates repeatedly
-    ![guess_repeat_coordinates](documentation_assets/images/guess_repeat_coordinates.png)
-### Future Features
- - Allow player to set grid
- - Allow player to position the ships themselves
+    - When setting locations or guesses, the only acceptable inputs are a number between 1-7 for a row and a letter between A-G for the column. 
+    - If either input is not within it's respective acceptable ranges, a message is printed declaring the input invalid, and the user is asked to re-enter until their choice is within the desired range
+    - If a player tries to place two ships on the same tile, one ship is assigned to another random unoccupied location instead
+    - If a player tries to guess a tile already guessed, they are informed that they have already guessed that location, and asked to guess again without missing a turn. 
+### Possible Future Features
+ - Varying sizes of ships
+ - Option to play versus a second human player
 ## Testing
 
 I have manually tested this project by the following:
 - Entered incorrect inputs into the terminal to make sure the correct warning messages are appearing
-- During the coding process, I ran the project through the terminal each time to make sure the functions I'm creating is working
+- Tested the game logic/flow, and played the game through in the terminal
 - Tested the project on Heroku
+### Embedded Testing
+The most effective way I found for solving syntactic errors in my code was through the problems tab that appears to the left of the terminal. In this tab I could identify errors as they appeared, and move to fix them before even testing the code by running it or copying it through a validator.  This embedded testing and debug function was the front line of repairing the errors in my code. An example of the errors as they appear in the problems section is below.
+
+Embedded test image
+
 ### Bugs
 #### Solved Bugs
-- Trying to guess the values of row: 7, col: 7 was returning the value not in range error. This was rectified by - 1 to the guessing logic.
-- The turn counter started at 0. This was rectified by adding + 1 to the turn counter.
-- CPU guessed incorrectly but their guess marked the user board with an X. Fixed by making sure the code to display an X on the user board appeared in this order: board cpu_guess_row cpu_guess_col
-
+- Solved the bug of lines being too long in code by, in several instances, starting what was once the same line of code on the next line instead
+- Solved a bug where it was impossible to check for both repeat location assignment and valid input for the location of ships, by changing the former check to be within 4 separate while loops at the bottom of the ship assignment function
 ### Remaining Bugs
-- No bugs remaining
+- A minor bug remains--if by some small chance the computer and player win at exactly the same time, there is no contingency message, and the game simply displays that the player won, and the computer won.  
+- The following problems remain confusing to me, and unresolved. 
+image of problems
 ### Validator Testing
 - [PEP8](http://pep8online.com/)
 I ran the code through the PEP8 validator. I initially ran into a few issues, as you can see in the image below:

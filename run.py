@@ -201,5 +201,5 @@ while TURNS > 0:
     if TURNS == 0:
         print(
             "That's it, we're out of time. We ran out of turns, so both we"
-            "and the enemy will live to sail another day.")
+            "and the enemy will live to sail another day--it's a draw.")
         break
