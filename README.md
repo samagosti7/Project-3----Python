@@ -104,6 +104,9 @@ I used PEP8 as a style linter for my code. No issues were found.
 ## Deployment
 After working through some bugs with heroku due to security errors with their software, I have deployed it manually via the terminal, and the game is live to play [here](https://sagosti-project3-final.herokuapp.com/).  
 
+Below is an image of the project intro message as it looks on the deployed app:
+![finalss](/assets/heroku_final_ss.JPG)
+
 
 ## End Product
 Below are some screenshots of the finished game:
