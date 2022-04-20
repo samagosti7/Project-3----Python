@@ -5,7 +5,7 @@
 For my Python essentials project, I chose to take another crack at a battleship game, after having unsuccessfully pursued that avenue for the JavaScript project.  Using python, I aimed to deploy code to a heroku app, on which a simple version of battleship can be played against the computer.  
 The user attempts to beat the computer by finding all enemy battleships first. Each battleship is in a 1x1 spot on the board.
 
-A live version of the game can be found [here](https://github.com/samagosti7/Project-3----Python).
+A live version of the game can be found [here](https://sagosti-project3-final.herokuapp.com/).
 
 ### Project Goals
 
@@ -102,11 +102,8 @@ I used PEP8 as a style linter for my code. No issues were found.
 ![pep8](assets/pep8_allright.JPG)
 
 ## Deployment
-Originally, I had deployed my project at various stages to heroku, checking my progress though the app as time passed and furthering the steps toward full deployment. However, the day before my project was due, I found this message:
+After working through some bugs with heroku due to security errors with their software, I have deployed it manually via the terminal, and the game is live to play [here](https://sagosti-project3-final.herokuapp.com/).  
 
-![heroku_bah](assets/heroku_revoked.JPG)
-
-Ultimatlely I could not troubleshoot this and in fact rolled back my semi-deployed version in heroku effort to fix it. From my understanding it was simply unfortunate timing that heroku changed their policy platform wide.  It was difficult for me to find alternative solutions for deployment in the 20 odd hours I had from the day this happened until the due date, so as of now the project exists only in github.  If alternative solutions to this exist I would be happy to hear them so I could know what other platforms I could use going forward, or if there is a way to fix this problem, because in my case as of very recently heroku has been rendered unusable. Hopefully this is not a problem affecting other students, but the nature of the announcement on heroku makes me thinkg it might be. 
 
 ## End Product
 Below are some screenshots of the finished game:
